@@ -1,0 +1,14 @@
+{
+    "type":"sqlite",
+    "logging":["query"],
+    "database": "./src/user/data/data-sources/no-sql/wrappers/typeorm/database/database.sqlite",
+    "migrations":[
+        "./src/user/data/data-sources/no-sql/wrappers/typeorm/database/migrations/*.ts"
+    ],
+    "entities":[
+        "./src/user/data/data-sources/no-sql/wrappers/typeorm/models/*.ts"
+    ],
+    "cli":{
+        "migrationsDir":"./src/user/data/data-sources/no-sql/wrappers/typeorm/database/migrations/"
+    }
+}
