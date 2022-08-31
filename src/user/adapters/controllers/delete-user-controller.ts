@@ -16,13 +16,17 @@ export class DeleteUserController implements Controller {
         }
 
         try {
-            await this.deleteUserUseCase.execute(cpf);
+            const response = await this.deleteUserUseCase.execute(cpf);
+
+            if (response.isLeft()) {
+                return badRequest(response.value);
+            }
+
             return ok({
                 result: "User successfully deleted"
             });
         } catch (error) {
-            //corrigir aqui para erros tipo SQL
-            return error instanceof Error ? badRequest(error) : serverError("internal");
+            serverError("internal");
         }
     }
 

@@ -2,6 +2,7 @@ import { UserDTO } from "../entities/userDTO";
 import { GetUserUseCase } from "../ports/use-cases/get-user-use-case";
 import { UserRepository } from "../ports/user-repository";
 import { InvalidUserError } from "../errors/invalid-user-error";
+import { left, right } from "@/shared/either";
 
 export class GetUser implements GetUserUseCase {
 
@@ -11,7 +12,7 @@ export class GetUser implements GetUserUseCase {
         const result = await this.userRepository.get(cpf);
 
         if(result === null) {
-            throw new InvalidUserError("User not found");
+            return left(new InvalidUserError("User not found"));
         }
 
         const dto: UserDTO = {
@@ -20,6 +21,6 @@ export class GetUser implements GetUserUseCase {
             skills: result.skills
         }
 
-        return dto;
+        return right(dto);
     }
 }

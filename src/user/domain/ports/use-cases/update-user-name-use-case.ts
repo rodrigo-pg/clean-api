@@ -1,8 +1,10 @@
+import { Either } from "@/shared/either";
+import { InvalidUserError } from "../../errors/invalid-user-error";
+
 export interface UpdateUserNameUseCase {
-    execute(userCpf: UpdateUserNameUseCase.Input, newName: UpdateUserNameUseCase.Input): Promise<UpdateUserNameUseCase.Output>;
+    execute(userCpf: string, newName: string): Promise<UpdateUserNameUseCase.Output>;
 }
 
 export namespace UpdateUserNameUseCase {
-    export type Input = string;
-    export type Output = void;
+    export type Output = Either<InvalidUserError, string>;
 }

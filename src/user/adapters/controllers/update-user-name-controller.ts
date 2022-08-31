@@ -17,10 +17,15 @@ export class UpdateUserNameController implements Controller {
         }
 
         try {
-            await this.updateUserNameUseCase.execute(cpf, name);
+            const response = await this.updateUserNameUseCase.execute(cpf, name);
+
+            if (response.isLeft()){
+                return badRequest(response.value);
+            }
+
             return ok({result: "User updated successfully"});
         } catch (error) {
-            return error instanceof Error ? badRequest(error) : serverError("internal"); 
+            serverError("internal"); 
         }
     }
 }

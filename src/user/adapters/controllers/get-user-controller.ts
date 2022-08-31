@@ -17,9 +17,14 @@ export class GetUserController implements Controller {
 
         try {
             const result = await this.getUserUseCase.execute(cpf);
-            return ok({result});
+
+            if(result.isLeft()) {
+                return badRequest(result.value);
+            }
+
+            return ok({result: result.value});
         } catch (error) {
-            return error instanceof Error ? badRequest(error) : serverError("internal");
+            serverError("internal");
         }
     }
 
