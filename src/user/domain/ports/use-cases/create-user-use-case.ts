@@ -1,5 +1,4 @@
-import { InvalidParamError } from "../../errors/invalid-param-error";
-import { InvalidUserError } from "../../errors/invalid-user-error";
+import { Result } from "@/shared/result";
 
 export interface CreateUserUseCase {
     execute(userData: CreateUserUseCase.Input): Promise<CreateUserUseCase.Output>;
@@ -12,5 +11,5 @@ export namespace CreateUserUseCase {
         skills: Array<string>;
     }
 
-    export type Output = InvalidParamError | InvalidUserError;
+    export type Output = Result<CreateUserUseCase>;
 }

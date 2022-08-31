@@ -1,5 +1,4 @@
-import { InvalidParamError } from "../errors/invalid-param-error";
-
+import { Result } from "@/shared/result";
 
 export class CPF {
 
@@ -14,11 +13,11 @@ export class CPF {
         return true;
     }
 
-    static create(cpf: string): CPF | InvalidParamError {
+    static create(cpf: string): Result<CPF> {
         if(!this.isValid(cpf)) {
-            return new InvalidParamError("cpf");
+            return Result.fail<CPF>("CPF is invalid");
         }
-        return new CPF(cpf);
+        return Result.ok<CPF>(new CPF(cpf));
     }
 
     getValue(): string {

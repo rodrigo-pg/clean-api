@@ -18,10 +18,15 @@ export class CreateUserController implements Controller {
         }
 
         try {
-            await this.createUserUseCase.execute(userData);
+            const response = await this.createUserUseCase.execute(userData);
+
+            if (response.isFailure) {
+
+            }
+
             return created({result: "User created successfully"});
         } catch (error) {
-            return error instanceof Error ? badRequest(error) : serverError("internal");
+            return serverError("internal");
         }
     }
 }

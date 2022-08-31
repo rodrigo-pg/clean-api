@@ -1,4 +1,4 @@
-import { InvalidParamError } from "../errors/invalid-param-error";
+import { Result } from "@/shared/result";
 
 export class Name {
 
@@ -13,11 +13,11 @@ export class Name {
         return true;
     }
 
-    static create(name: string): Name | InvalidParamError {
+    static create(name: string): Result<Name> {
         if(!this.isValid(name)) {
-            return new InvalidParamError("name");
+            return Result.fail<Name>("Name is invalid");
         }
-        return new Name(name);
+        return Result.ok<Name>(new Name(name));
     }
 
     getValue(): string {
