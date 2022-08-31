@@ -1,9 +1,10 @@
-import { Result } from "@/shared/result";
+import { left, right } from "@/shared/either";
 import { CreateUserUseCase } from "@/user/domain/ports/use-cases/create-user-use-case";
 import { UserRepository } from "@/user/domain/ports/user-repository";
 import { CPF } from "../entities/CPF";
 import { Name } from "../entities/Name";
 import { User } from "../entities/user";
+import { InvalidUserError } from "../errors/invalid-user-error";
 
 export class CreateUser implements CreateUserUseCase {
 
@@ -12,22 +13,27 @@ export class CreateUser implements CreateUserUseCase {
     async execute(userData: CreateUserUseCase.Input): Promise<CreateUserUseCase.Output> {
         const cpfOrError = CPF.create(userData.cpf);
         const nameOrError = Name.create(userData.name);
-        const propResults = Result.combine([cpfOrError, nameOrError]);
 
-        if(propResults.isFailure) {
-            return Result.fail<CreateUserUseCase>(propResults.error);
+        if (cpfOrError.isLeft()) {
+            return left(cpfOrError.value);
+        }
+
+        if (nameOrError.isLeft()) {
+            return left(nameOrError.value);
         }
 
         if (await this.userRepository.exists(userData.cpf)) {
-            return Result.fail<CreateUserUseCase>("User already exists");
+            return left(new InvalidUserError("User already exists"));
         }
 
         const user: User = {
-            cpf: cpfOrError.getValue().getValue(),
-            name: nameOrError.getValue().getValue(),
+            cpf: cpfOrError.value.getValue(),
+            name: nameOrError.value.getValue(),
             skills: userData.skills
         }
 
         await this.userRepository.add(user);
+
+        return right(userData);
     }
 }

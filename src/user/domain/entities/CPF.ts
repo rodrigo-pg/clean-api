@@ -1,4 +1,5 @@
-import { Result } from "@/shared/result";
+import { Either, left, right } from "@/shared/either";
+import { InvalidParamError } from "../errors/invalid-param-error";
 
 export class CPF {
 
@@ -13,11 +14,11 @@ export class CPF {
         return true;
     }
 
-    static create(cpf: string): Result<CPF> {
+    static create(cpf: string): Either<InvalidParamError, CPF> {
         if(!this.isValid(cpf)) {
-            return Result.fail<CPF>("CPF is invalid");
+            return left(new InvalidParamError("cpf"));
         }
-        return Result.ok<CPF>(new CPF(cpf));
+        return right(new CPF(cpf));
     }
 
     getValue(): string {

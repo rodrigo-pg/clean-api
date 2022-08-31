@@ -20,8 +20,8 @@ export class CreateUserController implements Controller {
         try {
             const response = await this.createUserUseCase.execute(userData);
 
-            if (response.isFailure) {
-
+            if (response.isLeft()) {
+                return badRequest(response.value);
             }
 
             return created({result: "User created successfully"});

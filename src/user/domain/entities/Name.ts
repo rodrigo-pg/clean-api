@@ -1,4 +1,5 @@
-import { Result } from "@/shared/result";
+import { Either, left, right } from "@/shared/either";
+import { InvalidParamError } from "../errors/invalid-param-error";
 
 export class Name {
 
@@ -13,11 +14,11 @@ export class Name {
         return true;
     }
 
-    static create(name: string): Result<Name> {
+    static create(name: string): Either<InvalidParamError, Name> {
         if(!this.isValid(name)) {
-            return Result.fail<Name>("Name is invalid");
+            return left(new InvalidParamError("name"));
         }
-        return Result.ok<Name>(new Name(name));
+        return right(new Name(name));
     }
 
     getValue(): string {
