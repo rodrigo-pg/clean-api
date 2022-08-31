@@ -1,7 +1,7 @@
 import { UserDTO } from "../entities/userDTO";
 import { GetUserUseCase } from "../ports/use-cases/get-user-use-case";
 import { UserRepository } from "../ports/user-repository";
-import { InvalidUserError } from "./errors/invalid-user-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
 
 export class GetUser implements GetUserUseCase {
 

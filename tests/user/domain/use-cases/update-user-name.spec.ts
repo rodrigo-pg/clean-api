@@ -1,5 +1,5 @@
 import { User } from "../../../../src/user/domain/entities/user";
-import { InvalidUserError } from "../../../../src/user/domain/use-cases/errors/invalid-user-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
 import { UpdateUserName } from "../../../../src/user/domain/use-cases/update-user-name";
 import { UserRepositorySpy } from "../mocks/mock-user-repository";
 

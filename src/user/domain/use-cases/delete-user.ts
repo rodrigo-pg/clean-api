@@ -1,6 +1,6 @@
 import { DeleteUserUseCase } from "../ports/use-cases/delete-user-use-case";
 import { UserRepository } from "../ports/user-repository";
-import { InvalidUserError } from "./errors/invalid-user-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
 
 export class DeleteUser implements DeleteUserUseCase {
 

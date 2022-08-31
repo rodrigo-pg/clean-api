@@ -1,4 +1,4 @@
-import { InvalidUserError } from "../../../../src/user/domain/use-cases/errors/invalid-user-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
 import { GetUser } from "../../../../src/user/domain/use-cases/get-user";
 import { UserRepositorySpy } from "../mocks/mock-user-repository";
 

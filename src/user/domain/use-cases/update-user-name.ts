@@ -1,6 +1,6 @@
 import { UpdateUserNameUseCase } from "../ports/use-cases/update-user-name-use-case";
 import { UserRepository } from "../ports/user-repository";
-import { InvalidUserError } from "./errors/invalid-user-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
 
 export class UpdateUserName implements UpdateUserNameUseCase {
 

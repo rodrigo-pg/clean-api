@@ -1,8 +1,8 @@
 import { UserRepositorySpy } from "../mocks/mock-user-repository";
 import { CreateUser } from "../../../../src/user/domain/use-cases/create-user";
 import { User } from "../../../../src/user/domain/entities/user";
-import { InvalidUserError } from "../../../../src/user/domain/use-cases/errors/invalid-user-error";
-import { InvalidParamError } from "../../../../src/user/domain/use-cases/errors/invalid-param-error";
+import { InvalidUserError } from "../errors/invalid-user-error";
+import { InvalidParamError } from "../errors/invalid-param-error";
 
 describe("CreateUser", () => {
 
