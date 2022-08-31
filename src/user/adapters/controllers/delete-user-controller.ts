@@ -1,6 +1,6 @@
 import { DeleteUserUseCase } from "@/user/domain/ports/use-cases/delete-user-use-case";
 import { Controller } from "./controller";
-import { MissingParamError } from "./errors/missing-param-error";
+import { MissingParamError } from "../errors/missing-param-error";
 import { badRequest, ok, serverError } from "./helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./ports/http";
 

@@ -1,6 +1,6 @@
 import { CreateUserUseCase } from "@/user/domain/ports/use-cases/create-user-use-case";
 import { Controller } from "./controller";
-import { MissingParamError } from "./errors/missing-param-error";
+import { MissingParamError } from "../errors/missing-param-error";
 import { badRequest, created, serverError } from "./helpers/http-helper";
 import { HttpRequest, HttpResponse } from "./ports/http";
 
