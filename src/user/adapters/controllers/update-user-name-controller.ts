@@ -19,12 +19,15 @@ export class UpdateUserNameController implements Controller {
         try {
             const response = await this.updateUserNameUseCase.execute(cpf, name);
 
+            console.log(response.value, 8888)
+
             if (response.isLeft()){
                 return badRequest(response.value);
             }
 
             return ok({result: "User updated successfully"});
         } catch (error) {
+            console.log(error.message, 99999)
             serverError("internal"); 
         }
     }

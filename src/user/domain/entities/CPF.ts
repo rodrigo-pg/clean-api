@@ -1,4 +1,4 @@
-import { Either, left, right } from "@/shared/either";
+import { Either, left, right } from "../../../shared/either";
 import { InvalidParamError } from "../errors/invalid-param-error";
 
 export class CPF {

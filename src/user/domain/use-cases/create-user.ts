@@ -1,4 +1,4 @@
-import { left, right } from "@/shared/either";
+import { left, right } from "../../../shared/either";
 import { CreateUserUseCase } from "@/user/domain/ports/use-cases/create-user-use-case";
 import { UserRepository } from "@/user/domain/ports/user-repository";
 import { CPF } from "../entities/CPF";
